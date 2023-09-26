@@ -3,6 +3,5 @@ node_modules/
 
 //Ignoring files
 package-lock.json
-package.json
 EXAMPLE.md
 .env

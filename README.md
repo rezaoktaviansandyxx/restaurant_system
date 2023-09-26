@@ -1,5 +1,3 @@
 # Restaurant System
 
-## 1. Use `npm init` to install package.json
-
-## 2.
+## Use `npm i` to install on package.json
