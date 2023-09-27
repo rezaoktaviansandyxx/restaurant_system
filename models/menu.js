@@ -16,11 +16,26 @@ module.exports = (sequelize, DataTypes) => {
   }
   menu.init(
     {
-      name: DataTypes.STRING,
-      price: DataTypes.INTEGER,
+      name: {
+        type: DataTypes.STRING,
+        validate: {
+          notEmpty: true,
+        },
+      },
+      price: {
+        type: DataTypes.INTEGER,
+        validate: {
+          notEmpty: true,
+        },
+      },
       image: DataTypes.STRING,
     },
     {
+      hooks: {
+        beforeCreate: (ingredient, options) => {
+          ingredient.image = `https://via.placeholder.com/50`;
+        },
+      },
       sequelize,
       modelName: "menu",
     }
