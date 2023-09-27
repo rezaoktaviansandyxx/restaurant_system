@@ -2,9 +2,7 @@ const express = require("express");
 const route = express.Router();
 
 route.get("/", (req, res) => {
-  res.json({
-    message: "Welcome to Restaurant",
-  });
+  res.render("index.ejs");
 });
 
 const menuRoutes = require("./menu");
