@@ -24,9 +24,43 @@ class MenuController {
     }
   }
 
-  static async update(req, res) {}
+  static async update(req, res) {
+    try {
+      const id = +req.params.id;
+      const { name, price, image } = req.body;
 
-  static async delete(req, res) {}
+      const result = await menu.update(
+        {
+          name,
+          price,
+          image,
+        },
+        {
+          where: { id },
+        }
+      );
+
+      result[0] === 1
+        ? res.json({ message: `Menu ${name} updated` })
+        : res.json({ message: `Menu ${name} not found` });
+    } catch (err) {
+      res.json(err);
+    }
+  }
+
+  static async delete(req, res) {
+    try {
+      const id = +req.params.id;
+
+      const result = await menu.destroy({ where: { id } });
+
+      result === 1
+        ? res.json({ message: `Menu deleted` })
+        : res.json({ message: `Menu not found` });
+    } catch (err) {
+      res.json(err);
+    }
+  }
 }
 
 module.exports = MenuController;

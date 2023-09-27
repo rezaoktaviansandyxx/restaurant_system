@@ -2,10 +2,10 @@ const { menu, ingredient, menu_ingredient } = require("../models");
 class MIController {
   static async getMIs(req, res) {
     try {
-      const mIs = await MI.findAll({
+      const result = await menu_ingredient.findAll({
         include: [menu, ingredient],
       });
-      res.json(mIs);
+      res.json(result);
     } catch (err) {
       res.json(err);
     }
@@ -13,14 +13,15 @@ class MIController {
 
   static async create(req, res) {
     try {
-      const { menuId, ingredientId } = req.body;
+      const { menuId, ingredientId, total } = req.body;
 
       const result = await menu_ingredient.create({
-        menuId: menuId,
-        ingredientId: ingredientId,
+        menuId: +menuId,
+        ingredientId: +ingredientId,
+        total,
       });
 
-      res.json(MI);
+      res.json(result);
     } catch (err) {
       res.json(err);
     }

@@ -21,7 +21,12 @@ module.exports = (sequelize, DataTypes) => {
     {
       menuId: DataTypes.INTEGER,
       ingredientId: DataTypes.INTEGER,
-      total: DataTypes.FLOAT,
+      total: {
+        type: DataTypes.FLOAT,
+        validate: {
+          notEmpty: true,
+        },
+      },
     },
     {
       sequelize,
