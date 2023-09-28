@@ -13,6 +13,14 @@ route.get("/delivery", (req, res) => {
   res.render("abouts/delivery.ejs");
 });
 
+route.get("/dining", (req, res) => {
+  res.render("abouts/dining.ejs");
+});
+
+route.get("/blog", (req, res) => {
+  res.render("abouts/blog.ejs");
+});
+
 const menuRoutes = require("./menu");
 const ingredientRoutes = require("./ingredient");
 const menuIngredientRoutes = require("./menu_ingredient");
