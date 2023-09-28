@@ -1,0 +1,61 @@
+<%- include ('../header') %>
+<h1 class="text-center">Menus</h1>
+<div class="container custom-container">
+  <hr />
+  <div class="col-12">
+    <table class="table table-striped text-center">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Ingredients</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% function formatPrice(price) { return new Intl.NumberFormat("id-ID", {
+        style: "currency", currency: "IDR", }).format(price); } %> <%
+        menus.forEach(menu => { %>
+        <tr>
+          <td><%= menu.id %></td>
+          <td>
+            <div class="col-12">
+              <img
+                src="<%= menu.image %>"
+                class="img-fluid rounded-circle custom-image"
+              />
+              <div class="col-12"><%= menu.name %></div>
+            </div>
+          </td>
+          <td><%= formatPrice(menu.price) %></td>
+          <td>
+            <% menu.ingredients.forEach(ingredient => { %> <%= ingredient.name
+            %>, <% }) %>
+          </td>
+          <td>
+            <div class="btn-group">
+              <a
+                href="/menus/update/<%= menu.id %>"
+                class="btn btn-md btn-info text-white mx-2"
+                data-menu-id="<%= menu.id %>"
+                >Update</a
+              >
+              <a
+                href="#"
+                class="btn btn-md btn-danger text-white delete-menu-link"
+                data-menu-id="<%= menu.id %>"
+                >Delete</a
+              >
+            </div>
+          </td>
+        </tr>
+        <% }) %>
+      </tbody>
+      <div>
+        <a href="/menus/create" class="btn btn-md btn-success">Add Menu</a>
+      </div>
+    </table>
+  </div>
+</div>
+<%- include ('../footer') %>

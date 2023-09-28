@@ -1,0 +1,31 @@
+<%- include("../header") %>
+<div class="container custom-container">
+  <form action="/menus/create" method="POST">
+    <div class="form-group">
+      <label class="form-label">Name</label>
+      <input type="text" class="form-control" name="name" placeholder="Name" />
+      <label class="form-label">Price</label>
+      <input
+        type="number"
+        class="form-control"
+        name="price"
+        placeholder="Price"
+      />
+
+      <% ingredients.forEach(function(ingredient) { %>
+      <label class="form-check-label mt-3">
+        <input
+          type="checkbox"
+          class="form-check-input"
+          name="ingredients"
+          value="<%= ingredient.id %>"
+        />
+        <%= ingredient.name %> </label
+      ><br />
+      <% }); %>
+
+      <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </div>
+  </form>
+</div>
+<%- include("../footer") %>

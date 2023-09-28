@@ -1,0 +1,50 @@
+<%- include("../header") %>
+<div class="container custom-container">
+  <% if (menu) { %>
+  <form method="POST" action="/menus/update/<%= menu.id %>">
+    <input type="hidden" name="_method" value="PUT" />
+    <div class="form-group">
+      <label class="form-label">Name</label>
+      <input
+        type="text"
+        class="form-control"
+        name="name"
+        value="<%= menu.name %>"
+      />
+      <br />
+      <label class="form-label">Price</label>
+      <input
+        type="number"
+        class="form-control"
+        name="price"
+        value="<%= menu.price %>"
+      />
+      <br />
+      <label class="form-label">Image</label>
+      <input
+        type="text"
+        class="form-control"
+        name="image"
+        value="<%= menu.image %>"
+      />
+      <br />
+      <label>Ingredients</label>
+      <br />
+      <% ingredients.forEach((ingredient) => { %>
+      <div class="ingredient-row mt-3">
+        <input type="checkbox" id="ingredient_<%= ingredient.id %>"
+        class="form-check-input" name="selectedIngredients" value="<%=
+        ingredient.id %>" <% if (menu.ingredients.some((i) => i.id ===
+        ingredient.id)) { %>checked<% } %> >
+        <label for="ingredient_<%= ingredient.id %>"
+          ><%= ingredient.name %></label
+        >
+      </div>
+      <% }); %>
+      <br />
+      <button type="submit" class="btn btn-primary mt-3">Update</button>
+    </div>
+  </form>
+  <% } %>
+</div>
+<%- include("../footer") %>
