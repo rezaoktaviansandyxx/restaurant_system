@@ -1,0 +1,58 @@
+<%- include('../header') %>
+<h1 class="text-center">Ingredients</h1>
+<div class="container custom-container">
+  <hr />
+  <div class="col-12">
+    <table class="table table-striped text-center">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% function formatPrice(price) { return new Intl.NumberFormat("id-ID", {
+        style: "currency", currency: "IDR", }).format(price); } %> <%
+        ingredients.forEach(ingredient => { %>
+        <tr>
+          <td><%= ingredient.id %></td>
+          <td>
+            <div class="col-12">
+              <img
+                src="<%= ingredient.image %>"
+                class="img-fluid rounded-circle custom-image"
+              />
+              <div class="col-12"><%= ingredient.name %></div>
+            </div>
+          </td>
+          <td><%= formatPrice(ingredient.price) %></td>
+          <td>
+            <div class="btn-group">
+              <a
+                href="/ingredients/update/<%= ingredient.id %>"
+                class="btn btn-md btn-info text-white mx-2"
+                data-ingredient-id="<%= ingredient.id %>"
+                >Update</a
+              >
+              <a
+                href="#"
+                class="btn btn-md btn-danger text-white delete-ingredient-link"
+                data-ingredient-id="<%= ingredient.id %>"
+                >Delete</a
+              >
+            </div>
+          </td>
+        </tr>
+        <% }) %>
+      </tbody>
+      <div>
+        <a href="/ingredients/create" class="btn btn-md btn-success"
+          >Add Ingredient</a
+        >
+      </div>
+    </table>
+  </div>
+</div>
+<%- include('../footer') %>

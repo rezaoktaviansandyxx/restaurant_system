@@ -3,11 +3,22 @@ const { ingredient } = require("../models");
 class IngredientController {
   static async getIngredients(req, res) {
     try {
-      const ingredients = await ingredient.findAll();
-      res.json(ingredients);
+      const ingredients = await ingredient.findAll({
+        order: [["id", "ASC"]],
+      });
+      const acceptHeader = req.get("Accept");
+      if (acceptHeader && acceptHeader.includes("text/html")) {
+        res.render("ingredients/index.ejs", { ingredients });
+      } else {
+        res.json(ingredients);
+      }
     } catch (err) {
       res.json(err);
     }
+  }
+
+  static async createPage(req, res) {
+    res.render("ingredients/createPage.ejs");
   }
 
   static async create(req, res) {
@@ -19,10 +30,26 @@ class IngredientController {
         price,
       });
 
-      // console.log(ingredients);
-      res.json(ingredients);
+      const acceptHeader = req.get("Accept");
+      if (acceptHeader && acceptHeader.includes("text/html")) {
+        res.redirect("/ingredients");
+      } else {
+        res.json(ingredients);
+      }
     } catch (err) {
       res.json(err);
+    }
+  }
+
+  static async updatePage(req, res) {
+    try {
+      const id = +req.params.id;
+
+      const ingredients = await ingredient.findByPk(id);
+      res.render("ingredients/updatePage.ejs", { ingredients });
+    } catch (err) {
+      // res.json(err);
+      console.log(err);
     }
   }
 
@@ -43,7 +70,7 @@ class IngredientController {
       );
 
       result[0] === 1
-        ? res.json({ message: `Ingredient ${name} updated` })
+        ? res.redirect("/ingredients")
         : res.json({ message: `Ingredient ${name} not found` });
     } catch (err) {
       res.json(err);
