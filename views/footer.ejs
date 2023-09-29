@@ -2,6 +2,22 @@
 
 <!-- Javascript Only -->
 <script>
+  document.addEventListener("DOMContentLoaded", function () {
+  const textElement = document.querySelector(".text");
+  const croppedImage = document.querySelectorAll(".cropped-image");
+
+  setTimeout(function () {
+      textElement.classList.add("visible");
+  }, 1000);
+
+  setTimeout(function () {
+    croppedImage.forEach(function (image) {
+      image.classList.add("visible");
+    });
+  }, 1500);
+});
+</script>
+<script>
   const deleteLinks = document.querySelectorAll('.delete-menu-link');
 
   deleteLinks.forEach(link => {
