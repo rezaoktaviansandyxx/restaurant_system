@@ -37,13 +37,13 @@
             <div class="btn-group">
               <a
                 href="/menus/update/<%= menu.id %>"
-                class="btn btn-md btn-info text-white mx-2"
+                class="btn btn-md btn-info text-white rounded"
                 data-menu-id="<%= menu.id %>"
                 >Update</a
               >
               <a
                 href="#"
-                class="btn btn-md btn-danger text-white delete-menu-link"
+                class="btn btn-md btn-danger text-white mx-2 rounded delete-menu-link"
                 data-menu-id="<%= menu.id %>"
                 >Delete</a
               >
@@ -52,8 +52,10 @@
         </tr>
         <% }) %>
       </tbody>
-      <div>
-        <a href="/menus/create" class="btn btn-md btn-success">Add Menu</a>
+      <div class="col-12">
+        <a href="/menus/create" class="btn btn-md btn-success rounded"
+          >Add Menu</a
+        >
       </div>
     </table>
   </div>

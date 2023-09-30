@@ -32,13 +32,13 @@
             <div class="btn-group">
               <a
                 href="/ingredients/update/<%= ingredient.id %>"
-                class="btn btn-md btn-info text-white mx-2"
+                class="btn btn-md btn-info text-white rounded"
                 data-ingredient-id="<%= ingredient.id %>"
                 >Update</a
               >
               <a
                 href="#"
-                class="btn btn-md btn-danger text-white delete-ingredient-link"
+                class="btn btn-md btn-danger text-white rounded mx-2 delete-ingredient-link"
                 data-ingredient-id="<%= ingredient.id %>"
                 >Delete</a
               >
@@ -48,7 +48,7 @@
         <% }) %>
       </tbody>
       <div>
-        <a href="/ingredients/create" class="btn btn-md btn-success"
+        <a href="/ingredients/create" class="btn btn-md btn-success rounded"
           >Add Ingredient</a
         >
       </div>
