@@ -110,8 +110,7 @@ class MenuController {
         res.json(updatedMenu.dataValues);
       }
     } catch (err) {
-      console.error(err);
-      res.status(500).send("Internal server error");
+      res.json(err);
     }
   }
 
